@@ -9,10 +9,12 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Matt's Portfolio">
-	<main>
+	<main class="flex flex-col min-h-screen">
 		<Header></Header>
 		<Project name="Project" description="This is a project." startDate="Jan 2020" endDate="Feb 2022" stack="HTML CSS Javascript" imgSRC="https://picsum.photos/200/300"></Project>
 		<Project name="Project2" description="This is a project." startDate="Jan 2020" endDate="Feb 2022" stack="HTML CSS Javascript" imgSRC="https://picsum.photos/200/300"></Project>
+		<Project name="Project2" description="This is a project." startDate="Jan 2020" endDate="Feb 2022" stack="HTML CSS Javascript" imgSRC="https://picsum.photos/200/300"></Project>
+		<div class="grow"></div>
 		<Footer email="mwilso07@student.ubc.ca" linkedIn="https://www.linkedin.com/in/matthew-k-wilson/" github="https://github.com/mattkwilson" shadertoy="https://www.shadertoy.com/user/mattwilson720"></Footer>
 	</main>
 </Layout>

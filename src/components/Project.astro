@@ -14,17 +14,36 @@ const { name, description, startDate, endDate, stack, imgSRC } = Astro.props;
 const date = startDate + ' - ' + endDate;
 ---
 
-<div class="flex flex-row bg-black m-2 rounded-md drop-shadow-2xl hover:bg-slate-800">
-    <div class="flex m-2">
-        <Picture src={imgSRC} alt="Project Image" sizes="120px" widths={[120]} aspectRatio={'16:9'}></Picture>
+<div class="flex flex-col mx-2 my-1 rounded-xl drop-shadow-2xl">
+    <div class="projectButton flex flex-row bg-black hover:bg-slate-800">
+        <div class="flex m-2">
+            <Picture src={imgSRC} alt="Project Image" sizes="120px" widths={[120]} aspectRatio={'16:9'}></Picture>
+        </div>
+        <div class="w-full flex flex-col m-2">
+            <div class="flex text-white font-code">
+                <h1 class="">{name}</h1>
+                <h2 class="mx-2 fixed right-2 top-2">{date}</h2>
+            </div>
+            <div id="stack" class="flex flex-row-reverse text-white">
+                {stack.split(' ').map((s) => ( <h3 class="bg-white m-2 rounded-md text-black font-bold px-1">{s}</h3> ))}
+            </div>
+        </div>
     </div>
-    <div class="w-full flex flex-col m-2">
-        <div class="flex text-white font-code">
-            <h1 class="">{name}</h1>
-            <h2 class="mx-2 fixed right-2 top-2">{date}</h2>
-        </div>
-        <div id="stack" class="flex flex-row-reverse text-white">
-            {stack.split(' ').map((s) => ( <h3 class="bg-white m-2 rounded-md text-black font-bold px-1">{s}</h3> ))}
-        </div>
+    <div class="bg-slate-300 h-96 collapse">
+        
     </div>
 </div>
+
+<script>
+    const projectCards = document.querySelectorAll('div.projectButton');
+    projectCards.forEach((e) => {
+        e.addEventListener('click', () => {
+            const content = e.parentElement.lastElementChild;
+            if(content.classList.contains('collapse')) {
+                content.classList.remove('collapse');
+            } else {
+                content.classList.add('collapse');
+            }
+        });
+    });
+</script>
