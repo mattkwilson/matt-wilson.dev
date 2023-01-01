@@ -1,0 +1,17 @@
+---
+import { Image, Picture } from '@astrojs/image/components';
+
+// TODO: use a server to handle media
+import bhopGoImage1 from '../assets/images/bhop_go/screenshot-menu.png';
+import bhopGoImage2 from '../assets/images/bhop_go/screenshot-level-select.png';
+import bhopGoImage3 from '../assets/images/bhop_go/screenshot-stage2-5.png';
+import bhopGoImage4 from '../assets/images/bhop_go/screenshot-stage3-3.png';
+import bhopGoImage5 from '../assets/images/bhop_go/screenshot-pause.png';
+import bhopGoImage6 from '../assets/images/bhop_go/screenshot-stage3-3-sideways.png';
+import bhopGoImage7 from '../assets/images/bhop_go/screenshot-level-complete.png';
+import bhopGoImage8 from '../assets/images/bhop_go/screenshot-settings.png';
+
+const bhopGoImages = [bhopGoImage1, bhopGoImage2, bhopGoImage3, bhopGoImage4, bhopGoImage5, bhopGoImage6, bhopGoImage7, bhopGoImage8];
+---
+
+{ bhopGoImages.map((image) => (<Image src={image} alt="" class="absolute h-full left-0 top-0"/>)) }

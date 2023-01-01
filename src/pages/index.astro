@@ -1,19 +1,38 @@
 ---
-import Description from '../components/Description.astro';
 import Header from '../components/Header.astro';
 import Three from '../components/Three.astro';
 import Project from '../components/Project.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+import ProjectInfo from '../components/ProjectInfo.astro';
+import Youtube from '../components/Youtube.astro';
+import MediaPlayer from '../components/MediaPlayer.astro';
+import ImageMedia from '../components/ImageMedia.astro';
+
+import bhopGoIcon from '../assets/images/bhop_go/icon.png';
 
 ---
 
 <Layout title="Matt's Portfolio">
 	<main class="flex flex-col min-h-screen">
 		<Header></Header>
-		<Project name="Project" description="This is a project." startDate="Jan 2020" endDate="Feb 2022" stack="HTML CSS Javascript" imgSRC="https://picsum.photos/200/300"></Project>
-		<Project name="Project2" description="This is a project." startDate="Jan 2020" endDate="Feb 2022" stack="HTML CSS Javascript" imgSRC="https://picsum.photos/200/300"></Project>
-		<Project name="Project2" description="This is a project." startDate="Jan 2020" endDate="Feb 2022" stack="HTML CSS Javascript" imgSRC="https://picsum.photos/200/300"></Project>
+		<Project name="Bhop Go" type="Android Mobile App" 
+			description="A 2D mobile game for Android devices." 
+			startDate="Jan 2017" endDate="Jun 2017" 
+			stack="Java Android libGDX" thumbnail={bhopGoIcon}>
+			<div class="bg-slate-500 flex flex-row h-96 collapse">
+				<div class="w-1/2">
+					<MediaPlayer>
+						<Youtube id="68helX0_BrY"></Youtube>
+						<ImageMedia></ImageMedia>
+					</MediaPlayer>
+				</div>
+				<div class="w-1/2">
+					<ProjectInfo></ProjectInfo>
+				</div>
+			</div>
+		</Project>
+		
 		<div class="grow"></div>
 		<Footer email="mwilso07@student.ubc.ca" linkedIn="https://www.linkedin.com/in/matthew-k-wilson/" github="https://github.com/mattkwilson" shadertoy="https://www.shadertoy.com/user/mattwilson720"></Footer>
 	</main>
