@@ -14,4 +14,9 @@ import bhopGoImage8 from '../assets/images/bhop_go/screenshot-settings.png';
 const bhopGoImages = [bhopGoImage1, bhopGoImage2, bhopGoImage3, bhopGoImage4, bhopGoImage5, bhopGoImage6, bhopGoImage7, bhopGoImage8];
 ---
 
-{ bhopGoImages.map((image) => (<Image src={image} alt="" class="absolute h-full left-0 top-0"/>)) }
+{ 
+    bhopGoImages.map((image) => (
+        <Image src={image} alt="" class={image.width >= image.height ? "absolute left-0 top-[50%] translate-y-[-50%]" : 
+            "absolute max-h-full w-auto top-0 left-[50%] translate-x-[-50%]"}/>
+    )) 
+}
