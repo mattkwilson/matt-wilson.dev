@@ -27,7 +27,7 @@ import { Content as Te2dProject } from '../projects/terrain-engine-2d.md';
 		<Project name="Terrain Engine 2D" type="Unity Extension Asset" 
 			description="A 2D procedural terrain generation tool for Unity." 
 			startDate="Oct 2017" endDate="Dec 2020" 
-			stack="C# Unity" thumbnail={te2dIcon}>
+			stack="C# Unity HLSL" thumbnail={te2dIcon}>
 			<div class="bg-slate-800 flex sm:flex-row h-96 hidden">
 				<div class="w-1/2">
 					<MediaPlayer>
@@ -67,10 +67,8 @@ import { Content as Te2dProject } from '../projects/terrain-engine-2d.md';
 			</div>
 		</Project>
 		
-		<div id="image-zoom-div" class="bg-black bg-opacity-90 absolute w-full h-full invisible">
-			<div class="w-[90%] h-[90%] relative m-auto top-[50%] translate-y-[-50%]">
-				<Image id="zoom-image" src={bhopGoIcon} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
-			</div>	
+		<div id="image-zoom-div" class="bg-black bg-opacity-90 fixed top=0 left=0 w-full h-full invisible">
+			<Image id="zoom-image" src={bhopGoIcon} alt="" class="max-w-[90%] max-h-[90%] w-auto h-auto absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"/>
 			<Icon class="w-12 h-12 absolute right-0 top-0 hover:cursor-pointer" style="color:white" pack="mdi" name="alpha-x"/>
 		</div>
 		<div class="grow"></div>
@@ -83,5 +81,6 @@ import { Content as Te2dProject } from '../projects/terrain-engine-2d.md';
 
 	imageZoomElement.addEventListener('click', () => {
 		imageZoomElement.classList.add('invisible');
+		document.body.classList.remove('overflow-hidden');
 	});
 </script>

@@ -10,19 +10,19 @@ import placeholder from '../assets/images/bhop_go/logo.png';
     <div class="flex flex-row bg-slate-900 w-full h-1/4 p-2">
         <button class="bg-black w-1/3 mr-2 relative">
             <div class="absolute top-0 left-0 w-full h-full">
-                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"/>
             </div>
             <Icon class="w-12 h-12 absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] opacity-80" 
                 style="color:white" pack="ic" name="baseline-keyboard-arrow-left"/>
         </button>
         <button class="bg-black w-1/3 border-2 border-white hover:cursor-default relative">
             <div class="absolute top-0 left-0 w-full h-full">
-                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"/>
             </div>
         </button>
         <button class="bg-black w-1/3 ml-2 relative">
             <div class="absolute top-0 left-0 w-full h-full">
-                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"/>
             </div>
             <Icon class="w-12 h-12 absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] opacity-80" 
                 style="color:white" pack="ic" name="baseline-keyboard-arrow-right"/>
@@ -87,6 +87,7 @@ import placeholder from '../assets/images/bhop_go/logo.png';
                 element.addEventListener('click', () => {
                     zoomImage.setAttribute('src', element.getAttribute('src'));
                     imageZoomElement.classList.remove('invisible');
+                    document.body.classList.add('overflow-hidden');
                 });
             }
         }
