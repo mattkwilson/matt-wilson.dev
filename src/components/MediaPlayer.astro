@@ -1,5 +1,6 @@
 ---
 import { Image, Picture } from '@astrojs/image/components';
+import { Icon } from 'astro-icon';
 import placeholder from '../assets/images/bhop_go/logo.png';
 ---
 <div media-div class="flex flex-col w-full h-full">
@@ -7,20 +8,32 @@ import placeholder from '../assets/images/bhop_go/logo.png';
         <slot/>
     </div>
     <div class="flex flex-row bg-slate-900 w-full h-1/4 p-2">
-        <button class="bg-black w-1/3 mr-2">
-            <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+        <button class="bg-black w-1/3 mr-2 relative">
+            <div class="absolute top-0 left-0 w-full h-full">
+                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+            </div>
+            <Icon class="w-12 h-12 absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] opacity-80" 
+                style="color:white" pack="ic" name="baseline-keyboard-arrow-left"/>
         </button>
-        <button class="bg-black w-1/3 border-2 border-white hover:cursor-default">
-            <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+        <button class="bg-black w-1/3 border-2 border-white hover:cursor-default relative">
+            <div class="absolute top-0 left-0 w-full h-full">
+                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+            </div>
         </button>
-        <button class="bg-black w-1/3 ml-2">
-            <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+        <button class="bg-black w-1/3 ml-2 relative">
+            <div class="absolute top-0 left-0 w-full h-full">
+                <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+            </div>
+            <Icon class="w-12 h-12 absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] opacity-80" 
+                style="color:white" pack="ic" name="baseline-keyboard-arrow-right"/>
         </button>
     </div>
 </div>
 
 <script>
     const mediaPlayers = document.querySelectorAll('[media-div]');
+    const imageZoomElement = document.getElementById('image-zoom-div');
+    const zoomImage = document.getElementById('zoom-image');
 
     mediaPlayers.forEach(setupMediaPlayer);
 
@@ -63,6 +76,20 @@ import placeholder from '../assets/images/bhop_go/logo.png';
                 setActiveMedia(media, mediaButtons, activeMediaIndex);
             }
         });        
+
+        setupZoomClickListeners(media);
+    }
+
+    function setupZoomClickListeners(media) {
+        for (var i = 0; i < media.length; i++) {
+            const element = media[i];
+            if (!element.hasAttribute('youtube-iframe')) {
+                element.addEventListener('click', () => {
+                    zoomImage.setAttribute('src', element.getAttribute('src'));
+                    imageZoomElement.classList.remove('invisible');
+                });
+            }
+        }
     }
 
     function setActiveMedia(media, mediaButtons, index) {
@@ -75,20 +102,27 @@ import placeholder from '../assets/images/bhop_go/logo.png';
     }
     
     function setMediaButtonImages(media: Element[], mediaButtons: Element[], index: number) {
-        const leftMediaImage = mediaButtons[0].children[0];
-        const selectedMediaImage = mediaButtons[1].children[0];
-        const rightMediaImage = mediaButtons[2].children[0];
+        const leftMediaImage = mediaButtons[0].children[0].children[0];
+        const selectedMediaImage = mediaButtons[1].children[0].children[0];
+        const rightMediaImage = mediaButtons[2].children[0].children[0];
+
+        const leftMediaArrow = mediaButtons[0].children[1];
+        const rightMediaArrow = mediaButtons[2].children[1];
 
         if(index == 0) {
             setMedia(leftMediaImage, null);
+            mediaButtons[0].classList.add('invisible');
         } else {
             setMedia(leftMediaImage, media[index - 1]);
+            mediaButtons[0].classList.remove('invisible');
         }
         setMedia(selectedMediaImage, media[index]);
         if(index == media.length - 1) {
             setMedia(rightMediaImage, null);
+            mediaButtons[2].classList.add('invisible');
         } else {
             setMedia(rightMediaImage, media[index + 1]);
+            mediaButtons[2].classList.remove('invisible');
         }
     }
 

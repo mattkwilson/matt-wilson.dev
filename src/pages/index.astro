@@ -9,8 +9,13 @@ import Youtube from '../components/Youtube.astro';
 import MediaPlayer from '../components/MediaPlayer.astro';
 import ImageMedia from '../components/ImageMedia.astro';
 
+import { Image, Picture } from '@astrojs/image/components';
+import { Icon } from 'astro-icon';
+
 import bhopGoIcon from '../assets/images/bhop_go/icon.png';
 
+import bhopGoImages from '../assets/definitions/bhop-go-images.js';
+import { Content as BhopGoProject } from '../projects/bhop-go.md';
 ---
 
 <Layout title="Matt's Portfolio">
@@ -20,21 +25,37 @@ import bhopGoIcon from '../assets/images/bhop_go/icon.png';
 			description="A 2D mobile game for Android devices." 
 			startDate="Jan 2017" endDate="Jun 2017" 
 			stack="Java Android libGDX" thumbnail={bhopGoIcon}>
-			<div class="bg-slate-800 flex flex-row h-96 collapse">
+			<div class="bg-slate-800 flex sm:flex-row h-96 collapse">
 				<div class="w-1/2">
 					<MediaPlayer>
 						<Youtube id="68helX0_BrY"></Youtube>
-						<ImageMedia></ImageMedia>
+						<ImageMedia images={bhopGoImages}></ImageMedia>
 					</MediaPlayer>
 				</div>
 				<div class="w-1/2">
-					<ProjectInfo description="" github=""></ProjectInfo>
+					<ProjectInfo github="">
+						<article class="prose-ul:list-disc prose-ul:list-inside">
+							<BhopGoProject />
+						</article>
+					</ProjectInfo>
 				</div>
 			</div>
 		</Project>
-		
+		<div id="image-zoom-div" class="bg-black bg-opacity-90 absolute w-full h-full invisible">
+			<div class="w-[90%] h-[90%] relative m-auto top-[50%] translate-y-[-50%]">
+				<Image id="zoom-image" src={bhopGoIcon} alt="" class="max-w-full max-h-full w-auto h-auto m-auto"/>
+			</div>	
+			<Icon class="w-12 h-12 absolute right-0 top-0 hover:cursor-pointer" style="color:white" pack="mdi" name="alpha-x"/>
+		</div>
 		<div class="grow"></div>
 		<Footer email="mwilso07@student.ubc.ca" linkedIn="https://www.linkedin.com/in/matthew-k-wilson/" github="https://github.com/mattkwilson" shadertoy="https://www.shadertoy.com/user/mattwilson720"></Footer>
 	</main>
 </Layout>
 
+<script>
+	const imageZoomElement = document.getElementById('image-zoom-div');
+
+	imageZoomElement.addEventListener('click', () => {
+		imageZoomElement.classList.add('invisible');
+	});
+</script>
