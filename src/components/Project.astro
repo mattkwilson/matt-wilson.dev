@@ -1,5 +1,6 @@
 ---
 import { Image, Picture } from '@astrojs/image/components';
+import ProjectInfo from '../components/ProjectInfo.astro';
 
 export interface Props {
 	name: string;
@@ -9,9 +10,10 @@ export interface Props {
     endDate: string;
     stack: string;
     thumbnail: string|ImageMetadata;
+    github: string;
 }
 
-const { name, type, description, startDate, endDate, stack, thumbnail } = Astro.props;
+const { name, type, description, startDate, endDate, stack, thumbnail, github } = Astro.props;
 const date = startDate + ' - ' + endDate;
 ---
 
@@ -36,7 +38,18 @@ const date = startDate + ' - ' + endDate;
             </div>
         </div>
     </div>
-    <slot/>
+    <div class="bg-slate-800 flex sm:flex-row h-96 hidden">
+        <div class="w-1/2">
+            <slot name="left"/>
+        </div>
+        <div class="w-1/2">
+            <ProjectInfo github="">
+                <article class="prose-ul:list-disc prose-ul:list-inside prose-a:text-red-700">
+                    <slot name="right"/>
+                </article>
+            </ProjectInfo>
+        </div>
+    </div>
 </div>
 
 <script>

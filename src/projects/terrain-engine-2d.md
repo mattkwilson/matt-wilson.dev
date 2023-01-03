@@ -12,7 +12,7 @@
 
 **Description:**
 
-Terrain Engine 2D was a complete system for procedurally generating destcructible 2D voxel terrain. 
+Terrain Engine 2D is a complete system for procedurally generating destructible 2D voxel terrain. 
 
 **Game Features:**
 - Grid Based Tiling System
@@ -24,7 +24,6 @@ Terrain Engine 2D was a complete system for procedurally generating destcructibl
 - Custom Unity Inspector
 - Terrain Serialization
 
-**Additional Information:**
-
 **Credits:**
-
+ - Special thanks to [Jon Gallant](https://github.com/jongallant/LiquidSimulator) and [Janis Elsts](https://w-shadow.com/blog/2009/09/01/simple-fluid-simulation/) for their work (MIT) which was used to create the fluid simulation.
+ - Thanks to [Sebastian Lague](https://www.youtube.com/c/SebastianLague) for his tutorial and [Field of View](https://github.com/SebLague/Field-of-View) project (MIT) which helped create the raycast lighting.

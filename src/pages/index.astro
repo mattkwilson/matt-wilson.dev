@@ -4,7 +4,6 @@ import Three from '../components/Three.astro';
 import Project from '../components/Project.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
-import ProjectInfo from '../components/ProjectInfo.astro';
 import Youtube from '../components/Youtube.astro';
 import MediaPlayer from '../components/MediaPlayer.astro';
 import ImageMedia from '../components/ImageMedia.astro';
@@ -14,11 +13,11 @@ import { Icon } from 'astro-icon';
 
 import bhopGoIcon from '../assets/images/bhop_go/icon.png';
 import bhopGoImages from '../assets/definitions/bhop-go-images.js';
-import { Content as BhopGoProject } from '../projects/bhop-go.md';
+import { Content as BhopGoProjectInfo } from '../projects/bhop-go.md';
 
 import te2dIcon from '../assets/images/terrain_engine_2d/te2d-icon.png';
 import te2dImages from '../assets/definitions/terrain-engine-2d-images.js';
-import { Content as Te2dProject } from '../projects/terrain-engine-2d.md';
+import { Content as Te2dProjectInfo } from '../projects/terrain-engine-2d.md';
 ---
 
 <Layout title="Matt's Portfolio">
@@ -27,44 +26,24 @@ import { Content as Te2dProject } from '../projects/terrain-engine-2d.md';
 		<Project name="Terrain Engine 2D" type="Unity Extension Asset" 
 			description="A 2D procedural terrain generation tool for Unity." 
 			startDate="Oct 2017" endDate="Dec 2020" 
-			stack="C# Unity HLSL" thumbnail={te2dIcon}>
-			<div class="bg-slate-800 flex sm:flex-row h-96 hidden">
-				<div class="w-1/2">
-					<MediaPlayer>
-						<Youtube id="aEjtgVMkfxA"></Youtube>
-						<Youtube id="gzQnZ6jpK1Q"></Youtube>
-						<Youtube id="--ve05Fcejs"></Youtube>
-						<ImageMedia images={te2dImages}></ImageMedia>
-					</MediaPlayer>
-				</div>
-				<div class="w-1/2">
-					<ProjectInfo github="">
-						<article class="prose-ul:list-disc prose-ul:list-inside">
-							<Te2dProject />
-						</article>
-					</ProjectInfo>
-				</div>
-			</div>
+			stack="C# Unity HLSL" thumbnail={te2dIcon} github="">
+			<MediaPlayer slot="left">
+				<Youtube id="aEjtgVMkfxA"></Youtube>
+				<Youtube id="gzQnZ6jpK1Q"></Youtube>
+				<Youtube id="--ve05Fcejs"></Youtube>
+				<ImageMedia images={te2dImages}></ImageMedia>
+			</MediaPlayer>
+			<Te2dProjectInfo slot="right"/>
 		</Project>
 		<Project name="Bhop Go" type="Android Mobile App" 
 			description="A 2D mobile game for Android devices." 
 			startDate="Jan 2017" endDate="Jun 2017" 
-			stack="Java Android libGDX" thumbnail={bhopGoIcon}>
-			<div class="bg-slate-800 flex sm:flex-row h-96 hidden">
-				<div class="w-1/2">
-					<MediaPlayer>
-						<Youtube id="68helX0_BrY"></Youtube>
-						<ImageMedia images={bhopGoImages}></ImageMedia>
-					</MediaPlayer>
-				</div>
-				<div class="w-1/2">
-					<ProjectInfo github="">
-						<article class="prose-ul:list-disc prose-ul:list-inside">
-							<BhopGoProject />
-						</article>
-					</ProjectInfo>
-				</div>
-			</div>
+			stack="Java Android libGDX" thumbnail={bhopGoIcon} github="">
+			<MediaPlayer slot="left">
+				<Youtube id="68helX0_BrY"></Youtube>
+				<ImageMedia images={bhopGoImages}></ImageMedia>
+			</MediaPlayer>
+			<BhopGoProjectInfo slot="right"/>
 		</Project>
 		
 		<div id="image-zoom-div" class="bg-black bg-opacity-90 fixed top=0 left=0 w-full h-full invisible">
