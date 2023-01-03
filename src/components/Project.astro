@@ -42,10 +42,10 @@ const date = startDate + ' - ' + endDate;
     projectCards.forEach((e) => {
         e.addEventListener('click', () => {
             const content = e.parentElement.lastElementChild;
-            if(content.classList.contains('collapse')) {
-                content.classList.remove('collapse');
+            if(content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
             } else {
-                content.classList.add('collapse');
+                content.classList.add('hidden');
             }
         });
     });
