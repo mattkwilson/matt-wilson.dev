@@ -13,14 +13,39 @@ import { Image, Picture } from '@astrojs/image/components';
 import { Icon } from 'astro-icon';
 
 import bhopGoIcon from '../assets/images/bhop_go/icon.png';
-
 import bhopGoImages from '../assets/definitions/bhop-go-images.js';
 import { Content as BhopGoProject } from '../projects/bhop-go.md';
+
+import te2dIcon from '../assets/images/terrain_engine_2d/te2d-icon.png';
+import te2dImages from '../assets/definitions/terrain-engine-2d-images.js';
+import { Content as Te2dProject } from '../projects/terrain-engine-2d.md';
 ---
 
 <Layout title="Matt's Portfolio">
 	<main class="flex flex-col min-h-screen">
 		<Header></Header>
+		<Project name="Terrain Engine 2D" type="Unity Extension Asset" 
+			description="A 2D procedural terrain generation tool for Unity." 
+			startDate="Oct 2017" endDate="Dec 2020" 
+			stack="C# Unity" thumbnail={te2dIcon}>
+			<div class="bg-slate-800 flex sm:flex-row h-96 collapse">
+				<div class="w-1/2">
+					<MediaPlayer>
+						<Youtube id="aEjtgVMkfxA"></Youtube>
+						<Youtube id="gzQnZ6jpK1Q"></Youtube>
+						<Youtube id="--ve05Fcejs"></Youtube>
+						<ImageMedia images={te2dImages}></ImageMedia>
+					</MediaPlayer>
+				</div>
+				<div class="w-1/2">
+					<ProjectInfo github="">
+						<article class="prose-ul:list-disc prose-ul:list-inside">
+							<Te2dProject />
+						</article>
+					</ProjectInfo>
+				</div>
+			</div>
+		</Project>
 		<Project name="Bhop Go" type="Android Mobile App" 
 			description="A 2D mobile game for Android devices." 
 			startDate="Jan 2017" endDate="Jun 2017" 
