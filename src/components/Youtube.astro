@@ -7,4 +7,4 @@ const { id } = Astro.props;
 const src = 'https://www.youtube.com/embed/' + id + '/?enablejsapi=1';
 ---
 
-<iframe youtube-iframe class="w-full h-full aspect-video" name={id} src={src} title="YouTube video player" allowfullscreen></iframe>
+<iframe youtube-iframe class="absolute top=0 left=0 w-full h-full aspect-video" name={id} src={src} title="YouTube video player" allowfullscreen></iframe>
