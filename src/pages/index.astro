@@ -1,14 +1,65 @@
 ---
+import Header from '../components/Header.astro';
+import Three from '../components/Three.astro';
+import Project from '../components/Project.astro';
 import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import Youtube from '../components/Youtube.astro';
+import MediaPlayer from '../components/MediaPlayer.astro';
+import ImageMedia from '../components/ImageMedia.astro';
 
+import { Image, Picture } from '@astrojs/image/components';
+import { Icon } from 'astro-icon';
+
+import bhopGoIcon from '../assets/images/bhop_go/icon.png';
+import bhopGoImages from '../assets/definitions/bhop-go-images.js';
+import { Content as BhopGoProjectInfo } from '../projects/bhop-go.md';
+
+import te2dIcon from '../assets/images/terrain_engine_2d/te2d-icon.png';
+import te2dImages from '../assets/definitions/terrain-engine-2d-images.js';
+import { Content as Te2dProjectInfo } from '../projects/terrain-engine-2d.md';
 ---
 
 <Layout title="Matt's Portfolio">
-	<main class="w-screen h-screen flex flex-col place-items-center justify-center bg-gradient-to-br from-slate-800 to-sky-800">
-		<h1 class="text-6xl text-center">Currently Under Construction</h1>
-		<svg class="w-20 animate-spin m-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-			<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-		</svg> 
+	<main class="flex flex-col min-h-screen">
+		<Header></Header>
+		<Project name="Terrain Engine 2D" type="Unity Extension Asset" 
+			description="A 2D procedural terrain generation tool for Unity." 
+			startDate="Oct 2017" endDate="Dec 2020" 
+			stack="C# Unity HLSL" thumbnail={te2dIcon} github="">
+			<MediaPlayer slot="left">
+				<Youtube id="aEjtgVMkfxA"></Youtube>
+				<Youtube id="gzQnZ6jpK1Q"></Youtube>
+				<Youtube id="--ve05Fcejs"></Youtube>
+				<ImageMedia images={te2dImages}></ImageMedia>
+			</MediaPlayer>
+			<Te2dProjectInfo slot="right"/>
+		</Project>
+		<Project name="Bhop Go" type="Android Mobile App" 
+		description="A 2D mobile game for Android devices." 
+		startDate="Jan 2017" endDate="Jun 2017" 
+		stack="Java Android libGDX" thumbnail={bhopGoIcon} github="">
+			<MediaPlayer slot="left">
+				<Youtube id="68helX0_BrY"></Youtube>
+				<ImageMedia images={bhopGoImages}></ImageMedia>
+			</MediaPlayer>
+			<BhopGoProjectInfo slot="right"/>
+		</Project>
+
+		<div id="image-zoom-div" class="bg-black bg-opacity-90 fixed top=0 left=0 w-full h-full invisible">
+			<Image id="zoom-image" src={bhopGoIcon} alt="" class="max-w-[90%] max-h-[90%] w-auto h-auto absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"/>
+			<Icon class="w-12 h-12 absolute right-0 top-0 hover:cursor-pointer" style="color:white" pack="mdi" name="alpha-x"/>
+		</div>
+		<div class="grow"></div>
+		<Footer email="mwilso07@student.ubc.ca" linkedIn="https://www.linkedin.com/in/matthew-k-wilson/" github="https://github.com/mattkwilson" shadertoy="https://www.shadertoy.com/user/mattwilson720"></Footer>
 	</main>
 </Layout>
 
+<script>
+	const imageZoomElement = document.getElementById('image-zoom-div');
+
+	imageZoomElement.addEventListener('click', () => {
+		imageZoomElement.classList.add('invisible');
+		document.body.classList.remove('overflow-hidden');
+	});
+</script>
