@@ -61,6 +61,15 @@ const date = startDate + ' - ' + endDate;
                 content.classList.remove('hidden');
             } else {
                 content.classList.add('hidden');
+                // pause all youtube videos
+                e.parentElement.querySelectorAll('[youtube-iframe]').forEach(element=> {
+                    var message = {
+                        event: 'command',
+                        func: 'pauseVideo'
+                    };
+                    const iframeElement = element as HTMLIFrameElement;
+                    iframeElement.contentWindow.postMessage(JSON.stringify(message), '*');
+                });   
             }
         });
     });

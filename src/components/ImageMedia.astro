@@ -10,7 +10,6 @@ const { images } = Astro.props;
 
 { 
     images.map((image) => (
-        <Image src={image} alt="" class={image.width >= image.height ? "absolute hover:cursor-pointer left-0 top-[50%] translate-y-[-50%]" : 
-            "absolute hover:cursor-pointer max-h-full w-auto top-0 left-[50%] translate-x-[-50%]"}/>
+        <Image src={image} alt="" class="absolute hover:cursor-pointer max-w-full max-h-full h-auto w-auto left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%]"/>
     )) 
 }
