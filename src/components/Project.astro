@@ -38,11 +38,11 @@ const date = startDate + ' - ' + endDate;
             </div>
         </div>
     </div>
-    <div class="bg-slate-800 flex sm:flex-row h-96 hidden">
-        <div class="w-1/2">
+    <div class="bg-slate-800 flex flex-col md:flex-row md:h-96 hidden">
+        <div class="w-full md:w-1/2">
             <slot name="left"/>
         </div>
-        <div class="w-1/2">
+        <div class="w-full md:w-1/2">
             <ProjectInfo github="">
                 <article class="prose-ul:list-disc prose-ul:list-inside prose-a:text-red-700">
                     <slot name="right"/>
