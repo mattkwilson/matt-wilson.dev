@@ -7,6 +7,7 @@ import Footer from '../components/Footer.astro';
 import Youtube from '../components/Youtube.astro';
 import MediaPlayer from '../components/MediaPlayer.astro';
 import ImageMedia from '../components/ImageMedia.astro';
+import Shadertoy from '../components/Shadertoy.astro';
 
 import { Image, Picture } from '@astrojs/image/components';
 import { Icon } from 'astro-icon';
@@ -18,11 +19,31 @@ import { Content as BhopGoProjectInfo } from '../projects/bhop-go.md';
 import te2dIcon from '../assets/images/terrain_engine_2d/te2d-icon.png';
 import te2dImages from '../assets/definitions/terrain-engine-2d-images.js';
 import { Content as Te2dProjectInfo } from '../projects/terrain-engine-2d.md';
+
+import rayTracingIcon from '../assets/images/ray_tracing_spheres/icon.png';
+import { Content as RayTracingProjectInfo } from '../projects/ray-tracing-spheres.md';
 ---
 
 <Layout title="Matt's Portfolio">
 	<main class="flex flex-col min-h-screen">
 		<Header></Header>
+		<!-- <Project name="HSBC Digital Walk-Around Project" type="Full Stack Web Development" 
+		description="Developed a virtual office space for managing Zoom meetings." 
+		startDate="Jan 2022" endDate="Apr 2022" 
+		stack="TypeScript Node.js React AWS" thumbnail={bhopGoIcon} github="">
+			<MediaPlayer slot="left">
+				<Youtube id="68helX0_BrY"></Youtube>
+				<ImageMedia images={bhopGoImages}></ImageMedia>
+			</MediaPlayer>
+			<BhopGoProjectInfo slot="right"/>
+		</Project> -->
+		<Project name="Ray Tracing Scene" type="Fragment Shader" 
+		description="A simple 3D scene of raytraced spheres." 
+		startDate="Nov 2022" endDate="Dec 2022" 
+		stack="GLSL OpenGL" thumbnail={rayTracingIcon} github="">
+			<Shadertoy slot="left" id="clXGzf"/>
+			<RayTracingProjectInfo slot="right"/>
+		</Project>
 		<Project name="Terrain Engine 2D" type="Unity Extension Asset" 
 			description="A 2D procedural terrain generation tool for Unity." 
 			startDate="Oct 2017" endDate="Dec 2020" 

@@ -1,0 +1,10 @@
+---
+export interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+const src = 'https://www.shadertoy.com/embed/' + id + '?gui=true&t=10&paused=true&muted=false';
+---
+
+<iframe shadertoy-iframe class="w-full h-96" name={id} src={src} title="Shadertoy player" allowfullscreen></iframe>
