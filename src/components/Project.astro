@@ -56,8 +56,12 @@ const date = startDate + ' - ' + endDate;
 
 <script>
     const projectCards = document.querySelectorAll('[project-div]');
+    projectCards.forEach((element) => {
+        element.addEventListener('click', handleProjectCardClick);
+    });
 
     function handleProjectCardClick(event: Event) {
+        console.log('Handle Project Card Click: ' + event.currentTarget);
         const e = event.currentTarget as Element;
         const content = e.parentElement.lastElementChild;
         if(content.classList.contains('hidden')) {
@@ -77,8 +81,4 @@ const date = startDate + ' - ' + endDate;
             });   
         }
     }
-
-    projectCards.forEach((element) => {
-        element.addEventListener('click', handleProjectCardClick);
-    });
 </script>
