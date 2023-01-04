@@ -4,7 +4,7 @@ export interface Props {
 }
 
 const { id } = Astro.props;
-const src = 'https://www.shadertoy.com/embed/' + id + '?gui=true&t=10&paused=true&muted=false';
+const src = 'https://www.shadertoy.com/embed/' + id + '?gui=true&t=10&paused=true&muted=true';
 ---
 
 <iframe shadertoy-iframe class="w-full h-96" name={id} src={src} title="Shadertoy player" allowfullscreen></iframe>

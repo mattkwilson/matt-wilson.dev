@@ -56,25 +56,29 @@ const date = startDate + ' - ' + endDate;
 
 <script>
     const projectCards = document.querySelectorAll('[project-div]');
-    projectCards.forEach((e) => {
-        e.addEventListener('click', () => {
-            const content = e.parentElement.lastElementChild;
-            if(content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                e.classList.remove('rounded-b-xl')
-            } else {
-                content.classList.add('hidden');
-                e.classList.add('rounded-b-xl')
-                // pause all youtube videos
-                e.parentElement.querySelectorAll('[youtube-iframe]').forEach(element=> {
-                    var message = {
-                        event: 'command',
-                        func: 'pauseVideo'
-                    };
-                    const iframeElement = element as HTMLIFrameElement;
-                    iframeElement.contentWindow.postMessage(JSON.stringify(message), '*');
-                });   
-            }
-        });
+
+    function handleProjectCardClick(event: Event) {
+        const e = event.currentTarget as Element;
+        const content = e.parentElement.lastElementChild;
+        if(content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            e.classList.remove('rounded-b-xl')
+        } else {
+            content.classList.add('hidden');
+            e.classList.add('rounded-b-xl')
+            // pause all youtube videos
+            e.parentElement.querySelectorAll('[youtube-iframe]').forEach(element=> {
+                var message = {
+                    event: 'command',
+                    func: 'pauseVideo'
+                };
+                const iframeElement = element as HTMLIFrameElement;
+                iframeElement.contentWindow.postMessage(JSON.stringify(message), '*');
+            });   
+        }
+    }
+
+    projectCards.forEach((element) => {
+        element.addEventListener('click', handleProjectCardClick);
     });
 </script>
