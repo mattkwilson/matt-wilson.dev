@@ -17,8 +17,8 @@ const { name, type, description, startDate, endDate, stack, thumbnail, github } 
 const date = startDate + ' - ' + endDate;
 ---
 
-<div class="flex flex-col mx-2 my-1 rounded-xl drop-shadow-2xl">
-    <div project-div class="w-full h-full bg-black hover:bg-slate-800">
+<div class="flex flex-col mx-2 my-1 drop-shadow-2xl">
+    <div project-div class="w-full h-full bg-black rounded-t-xl sm:rounded-t-none rounded-b-xl sm:rounded-b-none hover:bg-slate-800">
         <div class="flex flex-row m-2 my-3">
             <div class="flex m-auto mx-2">
                 <Picture class="flex mx-auto my-auto rounded-md" src={thumbnail} alt="Project Image" sizes="120px" widths={[120]} aspectRatio={'1:1'}></Picture>
@@ -40,7 +40,7 @@ const date = startDate + ' - ' + endDate;
             </div>
         </div>
     </div>
-    <div class="bg-slate-800 flex flex-col md:flex-row md:h-96 hidden">
+    <div class="bg-slate-800 flex flex-col md:flex-row md:h-96 rounded-b-xl sm:rounded-b-none hidden">
         <div class="w-full md:w-1/2">
             <slot name="left"/>
         </div>
@@ -61,8 +61,10 @@ const date = startDate + ' - ' + endDate;
             const content = e.parentElement.lastElementChild;
             if(content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
+                e.classList.remove('rounded-b-xl')
             } else {
                 content.classList.add('hidden');
+                e.classList.add('rounded-b-xl')
                 // pause all youtube videos
                 e.parentElement.querySelectorAll('[youtube-iframe]').forEach(element=> {
                     var message = {
