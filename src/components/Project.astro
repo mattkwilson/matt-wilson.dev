@@ -18,23 +18,25 @@ const date = startDate + ' - ' + endDate;
 ---
 
 <div class="flex flex-col mx-2 my-1 rounded-xl drop-shadow-2xl">
-    <div project-div class="flex flex-row bg-black hover:bg-slate-800">
-        <div class="flex m-2">
-            <Picture class="rounded-md m-1" src={thumbnail} alt="Project Image" sizes="120px" widths={[120]} aspectRatio={'1:1'}></Picture>
-        </div>
-        <div class="w-full flex flex-col m-2 justify-between">
-            <div class="flex flex-row text-white font-code justify-between">
-                <div class="flex flex-row justify-start">
-                    <h1 class="">{name}</h1>
-                    <h1 class="hidden md:block text-sm my-auto mx-2">- {type}</h1>
+    <div project-div class="w-full h-full bg-black hover:bg-slate-800">
+        <div class="flex flex-row m-2 my-3">
+            <div class="flex m-auto mx-2">
+                <Picture class="flex mx-auto my-auto rounded-md" src={thumbnail} alt="Project Image" sizes="120px" widths={[120]} aspectRatio={'1:1'}></Picture>
+            </div>
+            <div class="w-full flex flex-col mx-1 justify-between">
+                <div class="flex flex-col-reverse sm:flex-row text-white font-code justify-between">
+                    <div class="flex flex-row justify-start">
+                        <h1 class="text-lg sm:text-base">{name}</h1>
+                        <h1 class="hidden md:block text-sm my-auto mx-2">- {type}</h1>
+                    </div>
+                    <h2 class="mr-1 text-xs sm:text-base text-right">{date}</h2>
                 </div>
-                <h2 class="mr-1">{date}</h2>
-            </div>
-            <div class="hidden my-1 sm:block grow text-white">
-                <h2>{description}</h2>
-            </div>
-            <div id="stack" class="flex flex-row-reverse text-white">
-                {stack.split(' ').reverse().map((s) => ( <h3 class="bg-white m-2 rounded-md text-black font-bold px-1">{s}</h3> ))}
+                <div class="hidden my-1 sm:block grow text-white">
+                    <h2>{description}</h2>
+                </div>
+                <div id="stack" class="flex flex-row-reverse text-white">
+                    {stack.split(' ').reverse().map((s) => ( <h3 class="bg-white mx-2 rounded-md text-black font-bold px-1">{s}</h3> ))}
+                </div>
             </div>
         </div>
     </div>
