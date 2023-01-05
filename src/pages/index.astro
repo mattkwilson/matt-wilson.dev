@@ -1,11 +1,11 @@
 ---
 import Header from '../components/Header.astro';
 import Three from '../components/Three.astro';
-import Project from '../components/Project.astro';
+import Project from '../layouts/Project.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import Youtube from '../components/Youtube.astro';
-import MediaPlayer from '../components/MediaPlayer.astro';
+import MediaPlayer from '../layouts/MediaPlayer.astro';
 import ImageMedia from '../components/ImageMedia.astro';
 import Shadertoy from '../components/Shadertoy.astro';
 
@@ -22,8 +22,8 @@ import { Content as Te2dProjectInfo } from '../projects/terrain-engine-2d.md';
 
 import rayTracingIcon from '../assets/images/ray_tracing_spheres/ray-tracing-icon.png';
 import { Content as RayTracingProjectInfo } from '../projects/ray-tracing-spheres.md';
----
 
+---
 <Layout title="Matt's Portfolio">
 	<main class="flex flex-col min-h-screen">
 		<Header></Header>
@@ -84,3 +84,4 @@ import { Content as RayTracingProjectInfo } from '../projects/ray-tracing-sphere
 		document.body.classList.remove('overflow-hidden');
 	});
 </script>
+
