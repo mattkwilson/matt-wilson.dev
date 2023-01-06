@@ -1,5 +1,16 @@
 ---
+export interface Props {
+    id: string;
+	src: string;
+}
 
+const { id, src } = Astro.props;
 ---
 
-<div id="three" class="mx-auto h-screen"></div>
+<div id={id} class="mx-auto w-full h-full"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/lil-gui@0.17.0/dist/lil-gui.umd.min.js"></script>
+<script src="https://unpkg.com/perlin-noise-3d"></script>
+<script src="https://unpkg.com/three@0.146.0/examples/js/controls/PointerLockControls.js"></script>
+
+<script src='../js/procedural-voxels.js'></script>

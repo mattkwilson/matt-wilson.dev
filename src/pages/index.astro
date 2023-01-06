@@ -23,6 +23,8 @@ import { Content as Te2dProjectInfo } from '../projects/terrain-engine-2d.md';
 import rayTracingIcon from '../assets/images/ray_tracing_spheres/ray-tracing-icon.png';
 import { Content as RayTracingProjectInfo } from '../projects/ray-tracing-spheres.md';
 
+import proceduralTerrainIcon from '../assets/images/procedural_terrain/procedural-terrain-icon.png';
+import { Content as ProceduralTerrainProjectInfo } from '../projects/procedural-terrain.md';
 ---
 <Layout title="Matt's Portfolio">
 	<main class="flex flex-col min-h-screen">
@@ -37,6 +39,13 @@ import { Content as RayTracingProjectInfo } from '../projects/ray-tracing-sphere
 			</MediaPlayer>
 			<BhopGoProjectInfo slot="right"/>
 		</Project> -->
+		<Project name="Procedural Terrain" type="Web App" 
+		description="Infinite procedurally generated terrain." 
+		startDate="Oct 2022" endDate="Jan 2023" 
+		stack="HTML JavaScript Three.js" thumbnail={proceduralTerrainIcon} github="">
+			<Three id="procedural-voxels" src="js/procedural-voxels.js" slot="left"/>
+			<ProceduralTerrainProjectInfo slot="right"/>
+		</Project>
 		<Project name="Ray Tracing Scene" type="Fragment Shader" 
 		description="A simple 3D scene of raytraced spheres." 
 		startDate="Nov 2022" endDate="Dec 2022" 
