@@ -1,3 +1,4 @@
+
 // ----------------------------------------------------------
 // Created by Matthew Wilson
 // Created for UBC CPSC 314, September 2022, Assignment 1 
@@ -8,11 +9,12 @@
 
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0xb3e6e4);
-document.getElementById('procedural-voxels').appendChild(renderer.domElement);
 
-const aspect = window.innerWidth / window.innerHeight;
+const viewportElement = document.getElementById('procedural-voxels');
+viewportElement.appendChild(renderer.domElement);
+renderer.setClearColor(0xb3e6e4);
+
+const aspect = viewportElement.offsetWidth / viewportElement.offsetHeight;
 const camera = new THREE.PerspectiveCamera(70, aspect, 0.1, 1000);
 
 const ambientLight = new THREE.AmbientLight(0x4a4a4a);
@@ -21,7 +23,9 @@ const light = new THREE.PointLight(0xffffff);
 scene.add(light);
 
 // --------------------------GUI-----------------------------
-const gui = new lil.GUI();
+const gui = new lil.GUI({container: viewportElement});
+gui.domElement.classList.add('absolute', 'top-0', 'right-0');
+gui.close();
 
 // PROCEDURAL GENERATION PROPERTIES
 // -- play with these values to switch up the terrain that is generated
@@ -140,15 +144,15 @@ function buildChunkMesh(mesh) {
   }
 
   function getTerrainHeight(x, z) {
-    var height = getNoise(x, 0, z, terrainData.smoothness, terrainData.scale, terrainData.seed); 
+    var height = getNoise(x, z, terrainData.smoothness, terrainData.scale, terrainData.seed); 
     return height;
   }
 
   // 3D Perlin Noise value
   // smooth - controls variability of output (higher -> smoother terrain)
   // scale - controls size of output (higher -> larger scale terrain)
-  function getNoise(x, y, z, smooth = 1, scale = 1, seed = 0) {
-    return noise.get((x + seed) / smooth, (y + seed) / smooth, (z + seed) / smooth) * scale;
+  function getNoise(x, z, smooth = 1, scale = 1, seed = 0) {
+    return noise.get((x + seed) / smooth, 0, (z + seed) / smooth) * scale;
   }
 
 // Add unit made up of two faces to mesh
@@ -290,9 +294,13 @@ function inputHandler() {
 // -------------------------UPDATE---------------------------
 
 window.addEventListener('resize', resize);
+
+const resizeObserver = new ResizeObserver(resize);
+resizeObserver.observe(viewportElement);
+
 function resize() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
+    renderer.setSize(viewportElement.offsetWidth, viewportElement.offsetHeight);
+    camera.aspect = viewportElement.offsetWidth / viewportElement.offsetHeight;
     camera.updateProjectionMatrix();
 }
 
