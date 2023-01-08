@@ -49,7 +49,8 @@ import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 		description="A simple 3D scene of raytraced spheres." 
 		startDate="Nov 2022" endDate="Dec 2022" 
 		stack="GLSL OpenGL Shadertoy" thumbnail={rayTracingIcon} github="">
-			<Shadertoy slot="left" id="clXGzf"/>
+			<!-- <Shadertoy slot="left" id="clXGzf"/> -->
+			<Three id="ray-tracing" src="/src/js/ray-tracing.js" slot="left"/>
 			<RayTracingProjectInfo slot="right"/>
 		</Project>
 		<Project name="Procedural Terrain" type="Web App" 
@@ -58,7 +59,6 @@ import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 		stack="HTML JavaScript Three.js" thumbnail={proceduralTerrainIcon} github="">
 			<Three id="procedural-voxels" src="/src/js/procedural-voxels.js" slot="left">
 				<script type="text/javascript" src="https://unpkg.com/perlin-noise-3d"></script> 
-				<script type="module" src="https://unpkg.com/three@0.146.0/examples/js/controls/PointerLockControls.js"></script>
 			</Three>
 			<ProceduralTerrainProjectInfo slot="right"/>
 		</Project>
