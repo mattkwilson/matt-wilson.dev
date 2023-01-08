@@ -19,6 +19,8 @@ import placeholder from '../assets/images/bhop_go/logo.png';
             <div class="absolute top-0 left-0 w-full h-full">
                 <Image src={placeholder} alt="" class="max-w-full max-h-full w-auto h-auto m-auto absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"/>
             </div>
+            <Icon class="w-12 h-12 absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] opacity-80" 
+            style="color:white" pack="ic" name="round-play-arrow"/>
         </button>
         <button class="bg-black w-1/3 ml-2 relative">
             <div class="absolute top-0 left-0 w-full h-full">
@@ -53,6 +55,8 @@ import placeholder from '../assets/images/bhop_go/logo.png';
                         func: 'pauseVideo'
                     };
                     media[activeMediaIndex].contentWindow.postMessage(JSON.stringify(message), '*');
+                } else if(media[activeMediaIndex].tagName == 'VIDEO') {
+                    media[activeMediaIndex].pause();
                 }
 
                 activeMediaIndex--;
@@ -69,6 +73,8 @@ import placeholder from '../assets/images/bhop_go/logo.png';
                         func: 'pauseVideo'
                     };
                     media[activeMediaIndex].contentWindow.postMessage(JSON.stringify(message), '*');
+                } else if(media[activeMediaIndex].tagName == 'VIDEO') {
+                    media[activeMediaIndex].pause();
                 }
 
                 activeMediaIndex++;
@@ -83,7 +89,7 @@ import placeholder from '../assets/images/bhop_go/logo.png';
     function setupZoomClickListeners(media) {
         for (var i = 0; i < media.length; i++) {
             const element = media[i];
-            if (!element.hasAttribute('youtube-iframe')) {
+            if (!element.hasAttribute('youtube-iframe') && !(element.tagName == 'VIDEO')) {
                 element.addEventListener('click', () => {
                     zoomImage.setAttribute('src', element.getAttribute('src'));
                     imageZoomElement.classList.remove('invisible');
@@ -108,6 +114,7 @@ import placeholder from '../assets/images/bhop_go/logo.png';
         const rightMediaImage = mediaButtons[2].children[0].children[0];
 
         const leftMediaArrow = mediaButtons[0].children[1];
+        const centerMediaArrow = mediaButtons[1].children[1];
         const rightMediaArrow = mediaButtons[2].children[1];
 
         if(index == 0) {
@@ -118,6 +125,7 @@ import placeholder from '../assets/images/bhop_go/logo.png';
             mediaButtons[0].classList.remove('invisible');
         }
         setMedia(selectedMediaImage, media[index]);
+        setIcon(centerMediaArrow, media[index]);
         if(index == media.length - 1) {
             setMedia(rightMediaImage, null);
             mediaButtons[2].classList.add('invisible');
@@ -127,17 +135,33 @@ import placeholder from '../assets/images/bhop_go/logo.png';
         }
     }
 
+    function setIcon(iconElement: Element, media: Element) {
+        if(media.hasAttribute('youtube-iframe') || media.tagName == 'VIDEO') {
+            iconElement.classList.remove('invisible');
+        } else {
+            if (!iconElement.classList.contains('invisible')) {
+                iconElement.classList.add('invisible');
+            }
+        }
+    }
+
     function setMedia(mediaElement: Element, media: Element) {
         if(media == null) {
             mediaElement.setAttribute('src', '');
-        }else if(media.hasAttribute('youtube-iframe')) {
-            mediaElement.setAttribute('src', getThumbnailSRC(media));
+        } else if(media.hasAttribute('youtube-iframe')) {
+            mediaElement.setAttribute('src', getThumbnailSRCYoutube(media));
+        } else if(media.tagName == 'VIDEO') {
+            mediaElement.setAttribute('src', getThumbnailSRCVideo(media));
         } else {
             mediaElement.setAttribute('src', media.getAttribute('src'));
         }
     }
 
-    function getThumbnailSRC(youtubeElement) {
+    function getThumbnailSRCVideo(videoElement) {
+        return videoElement.getAttribute('poster');
+    }
+
+    function getThumbnailSRCYoutube(youtubeElement) {
         var id = youtubeElement.getAttribute('name');
         // id = id.substring(id.lastIndexOf('/') + 1, id.length);
         return 'https://img.youtube.com/vi/' + id + '/default.jpg'

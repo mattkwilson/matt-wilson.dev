@@ -8,6 +8,7 @@ import Youtube from '../components/Youtube.astro';
 import MediaPlayer from '../layouts/MediaPlayer.astro';
 import ImageMedia from '../components/ImageMedia.astro';
 import Shadertoy from '../components/Shadertoy.astro';
+import Video from '../components/Video.astro'
 
 import { Image, Picture } from '@astrojs/image/components';
 import { Icon } from 'astro-icon';
@@ -25,6 +26,10 @@ import { Content as RayTracingProjectInfo } from '../projects/ray-tracing-sphere
 
 import proceduralTerrainIcon from '../assets/images/procedural_terrain/procedural-terrain-icon.png';
 import { Content as ProceduralTerrainProjectInfo } from '../projects/procedural-terrain.md';
+
+import wytchwoodIcon from '../assets/images/wytchwood/wytchwood-icon.png';
+import wytchwoodImages from '../assets/definitions/wytchwood-images.js';
+import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 ---
 <Layout title="Matt's Portfolio">
 	<main class="flex flex-col min-h-screen">
@@ -39,6 +44,14 @@ import { Content as ProceduralTerrainProjectInfo } from '../projects/procedural-
 			</MediaPlayer>
 			<BhopGoProjectInfo slot="right"/>
 		</Project> -->
+
+		<Project name="Ray Tracing Scene" type="Fragment Shader" 
+		description="A simple 3D scene of raytraced spheres." 
+		startDate="Nov 2022" endDate="Dec 2022" 
+		stack="GLSL OpenGL Shadertoy" thumbnail={rayTracingIcon} github="">
+			<Shadertoy slot="left" id="clXGzf"/>
+			<RayTracingProjectInfo slot="right"/>
+		</Project>
 		<Project name="Procedural Terrain" type="Web App" 
 		description="Infinite procedurally generated terrain." 
 		startDate="Oct 2022" endDate="Jan 2023" 
@@ -49,31 +62,34 @@ import { Content as ProceduralTerrainProjectInfo } from '../projects/procedural-
 			</Three>
 			<ProceduralTerrainProjectInfo slot="right"/>
 		</Project>
-		<Project name="Ray Tracing Scene" type="Fragment Shader" 
-		description="A simple 3D scene of raytraced spheres." 
-		startDate="Nov 2022" endDate="Dec 2022" 
-		stack="GLSL OpenGL" thumbnail={rayTracingIcon} github="">
-			<Shadertoy slot="left" id="clXGzf"/>
-			<RayTracingProjectInfo slot="right"/>
+		<Project name="Wytchwood" type="Video Game" 
+		description="An adventure video game developed by Alientrap Games for Windows, PlayStation, Xbox and Nintendo Switch." 
+		startDate="Jan 2019" endDate="Jul 2020" 
+		stack="C# Unity Xbox Playstation Nintendo" thumbnail={wytchwoodIcon} github="">
+		<MediaPlayer slot="left">
+			<Video src="src/assets/images/wytchwood/wytchwood-showcase.webm" thumbnail="src/assets/images/wytchwood/wytchwood-header.jpg"></Video>
+			<ImageMedia images={wytchwoodImages}></ImageMedia>
+		</MediaPlayer>
+		<WytchwoodProjectInfo slot="right"/>
 		</Project>
 		<Project name="Terrain Engine 2D" type="Unity Extension Asset" 
 			description="A 2D procedural terrain generation tool for Unity." 
 			startDate="Oct 2017" endDate="Dec 2020" 
 			stack="C# Unity HLSL" thumbnail={te2dIcon} github="">
 			<MediaPlayer slot="left">
-				<Youtube id="aEjtgVMkfxA"></Youtube>
-				<Youtube id="gzQnZ6jpK1Q"></Youtube>
-				<Youtube id="--ve05Fcejs"></Youtube>
+				<Video src="src/assets/images/terrain_engine_2d/te2d-update.webm" thumbnail="src/assets/images/terrain_engine_2d/te2d-update-thumbnail.png"></Video>
+				<Video src="src/assets/images/terrain_engine_2d/te2d-release.webm" thumbnail="src/assets/images/terrain_engine_2d/te2d-release-thumbnail.png"></Video>
+				<Video src="src/assets/images/terrain_engine_2d/te2d-full-feature.webm" thumbnail="src/assets/images/terrain_engine_2d/te2d-full-feature-thumbnail.png"></Video>
 				<ImageMedia images={te2dImages}></ImageMedia>
 			</MediaPlayer>
 			<Te2dProjectInfo slot="right"/>
 		</Project>
-		<Project name="Bhop Go" type="Android Mobile App" 
+		<Project name="Bhop Go" type="Android Mobile Game" 
 		description="A 2D mobile game for Android devices." 
 		startDate="Jan 2017" endDate="Jun 2017" 
 		stack="Java Android libGDX" thumbnail={bhopGoIcon} github="">
 			<MediaPlayer slot="left">
-				<Youtube id="68helX0_BrY"></Youtube>
+				<Video src="src/assets/images/bhop_go/bhop-blop-trailer.webm" thumbnail="src/assets/images/bhop_go/logo.png"></Video>
 				<ImageMedia images={bhopGoImages}></ImageMedia>
 			</MediaPlayer>
 			<BhopGoProjectInfo slot="right"/>
