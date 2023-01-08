@@ -1,0 +1,17 @@
+---
+export interface Props {
+    id: string;
+	src: string;
+}
+
+const { id, src } = Astro.props;
+---
+
+<div id={id} class="mx-auto w-full h-96 relative">
+    <script type="module" src="https://unpkg.com/three"></script>
+    <slot/>
+    <script type='module' src={src}></script>
+</div>
+
+
+

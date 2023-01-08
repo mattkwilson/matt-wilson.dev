@@ -1,6 +1,6 @@
 ---
 import Header from '../components/Header.astro';
-import Three from '../components/Three.astro';
+import Three from '../layouts/Three.astro';
 import Project from '../layouts/Project.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
@@ -43,7 +43,10 @@ import { Content as ProceduralTerrainProjectInfo } from '../projects/procedural-
 		description="Infinite procedurally generated terrain." 
 		startDate="Oct 2022" endDate="Jan 2023" 
 		stack="HTML JavaScript Three.js" thumbnail={proceduralTerrainIcon} github="">
-			<Three id="procedural-voxels" src="js/procedural-voxels.js" slot="left"/>
+			<Three id="procedural-voxels" src="/src/js/procedural-voxels.js" slot="left">
+				<script type="text/javascript" src="https://unpkg.com/perlin-noise-3d"></script> 
+				<script type="module" src="https://unpkg.com/three@0.146.0/examples/js/controls/PointerLockControls.js"></script>
+			</Three>
 			<ProceduralTerrainProjectInfo slot="right"/>
 		</Project>
 		<Project name="Ray Tracing Scene" type="Fragment Shader" 

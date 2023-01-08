@@ -75,7 +75,6 @@ const date = startDate + ' - ' + endDate;
     });
 
     function handleProjectCardClick(event: Event) {
-        console.log('Handle Project Card Click: ' + event.currentTarget);
         const e = event.currentTarget as Element;
         const content = e.parentElement.lastElementChild;
         if(content.classList.contains('hidden')) {

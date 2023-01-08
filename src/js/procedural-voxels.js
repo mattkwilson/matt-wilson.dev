@@ -1,3 +1,4 @@
+import * as lil from 'lil-gui';
 
 // ----------------------------------------------------------
 // Created by Matthew Wilson
@@ -15,7 +16,7 @@ viewportElement.appendChild(renderer.domElement);
 renderer.setClearColor(0xb3e6e4);
 
 const aspect = viewportElement.offsetWidth / viewportElement.offsetHeight;
-const camera = new THREE.PerspectiveCamera(70, aspect, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(60, aspect, 1, 1000);
 
 const ambientLight = new THREE.AmbientLight(0x4a4a4a);
 scene.add(ambientLight);
@@ -39,11 +40,11 @@ const terrainData = {
   seed: Math.random() * 1000000
 };
 // --------------------
-gui.add(terrainData, 'playerSpeed', 0, 30);
-gui.add(terrainData, 'chunkSize', 0, 20, 2);
-gui.add(terrainData, 'mapSize', 0, 50);
-gui.add(terrainData, 'scale', 0, 100);
-gui.add(terrainData, 'smoothness', 0, 100);
+gui.add(terrainData, 'playerSpeed', 1, 30);
+gui.add(terrainData, 'chunkSize', 1, 20, 2);
+gui.add(terrainData, 'mapSize', 1, 50);
+gui.add(terrainData, 'scale', 1, 100);
+gui.add(terrainData, 'smoothness', 1, 100);
 gui.add(terrainData, 'seed');
 
 gui.onFinishChange((event) => {
@@ -260,14 +261,22 @@ function keyup(event) {
     pressedKeys.delete(event.keyCode);
 }
 
-const controls = new THREE.PointerLockControls(camera, document.body);
+const controls = new THREE.PointerLockControls(camera, viewportElement);
+controls.connect();
 
 // lock cursor to window
-document.addEventListener('click', (event) => {
+viewportElement.addEventListener('click', (event) => {
     // don't lock if user clicks the GUI
-    if (event.target.getAttribute('data-engine') == 'three.js r148') {
+    if (controls.isLocked) {
+      controls.unlock();
+    }
+    if (event.target.getAttribute('data-engine') == 'three.js r148' && !controls.isLocked) {
       controls.lock();
     } 
+});
+
+document.addEventListener('pointerlockchange', () => {
+  update();
 });
   
 var clock = new THREE.Clock();
@@ -302,6 +311,7 @@ function resize() {
     renderer.setSize(viewportElement.offsetWidth, viewportElement.offsetHeight);
     camera.aspect = viewportElement.offsetWidth / viewportElement.offsetHeight;
     camera.updateProjectionMatrix();
+    update();
 }
 
 function update() {
@@ -309,8 +319,12 @@ function update() {
 
     inputHandler();
     chunkloader();
-    requestAnimationFrame(update);
+    
     renderer.render(scene, camera);
+
+    if(controls.isLocked) {
+      requestAnimationFrame(update);
+    }
 }
 
 update();
