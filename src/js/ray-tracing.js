@@ -376,7 +376,7 @@ const shaderMaterial = new THREE.ShaderMaterial({
     `
 });
 
-scene.add(new THREE.Mesh(new THREE.PlaneBufferGeometry(2, 2), shaderMaterial));
+scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), shaderMaterial));
 
 // ----------------------Handle Input----------------------
 var mouseDown = false;

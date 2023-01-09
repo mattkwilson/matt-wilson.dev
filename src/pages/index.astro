@@ -31,8 +31,17 @@ import wytchwoodIcon from '../assets/images/wytchwood/wytchwood-icon.png';
 import wytchwoodImages from '../assets/definitions/wytchwood-images.js';
 import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 ---
+<script>
+	addEventListener("load", (event) => {
+		document.getElementById('loading-div').classList.add('invisible');
+		document.body.classList.remove('overflow-hidden');
+		console.log("LOADED");
+	});
+</script>
+
+
 <Layout title="Matt's Portfolio">
-	<main class="flex flex-col min-h-screen">
+	<main id="main" class="flex flex-col min-h-screen overflow-hidden">
 		<Header></Header>
 		<!-- <Project name="HSBC Digital Walk-Around Project" type="Full Stack Web Development" 
 		description="Developed a virtual office space for managing Zoom meetings." 
@@ -98,6 +107,12 @@ import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 		<div id="image-zoom-div" class="bg-black bg-opacity-90 fixed top=0 left=0 w-full h-full invisible">
 			<Image id="zoom-image" src={bhopGoIcon} alt="" class="max-w-[90%] max-h-[90%] w-auto h-auto absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"/>
 			<Icon class="w-12 h-12 absolute right-0 top-0 hover:cursor-pointer" style="color:white" pack="mdi" name="alpha-x"/>
+		</div>
+		<div id="loading-div" class="bg-black bg-opacity-90 fixed top=0 left=0 w-full h-full flex flex-col item-center justify-center">
+			<div class="m-auto">
+				<h1 class="text-white text-center text-5xl font-bold my-4">Loading...</h1>
+				<Icon class="w-24 h-24 mx-auto my-4 animate-spin animate-pulse " style="color:white" pack="uiw" name="loading"/>
+			</div>
 		</div>
 		<div class="grow"></div>
 		<Footer email="mwilso07@student.ubc.ca" linkedIn="https://www.linkedin.com/in/matthew-k-wilson/" github="https://github.com/mattkwilson" shadertoy="https://www.shadertoy.com/user/mattwilson720"></Footer>

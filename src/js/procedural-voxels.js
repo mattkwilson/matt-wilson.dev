@@ -262,7 +262,6 @@ function keyup(event) {
 }
 
 const controls = new THREE.PointerLockControls(camera, viewportElement);
-controls.connect();
 
 // lock cursor to window
 viewportElement.addEventListener('click', (event) => {
