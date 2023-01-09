@@ -393,7 +393,7 @@ viewportElement.addEventListener('mouseup', (event) => {
 // -----------------Capture Cursor Position-----------------
 
 viewportElement.addEventListener('mousemove', (event) => {
-    shaderMaterial.uniforms.iMouse.value = new THREE.Vector4(event.clientX, event.clientY, 0, 0);
+    shaderMaterial.uniforms.iMouse.value = new THREE.Vector4(event.offsetX, viewportElement.offsetHeight - event.offsetY, 0, 0);
     shaderMaterial.uniformsNeedUpdate = true;
 });
 
