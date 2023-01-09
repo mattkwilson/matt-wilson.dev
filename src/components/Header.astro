@@ -1,13 +1,16 @@
 ---
+import { Image, Picture } from '@astrojs/image/components';
 
+import profile from './src/assets/profile.png';
 ---
 
-<header class="bg-black w-full flex flex-col justify-center mb-1">
-    <div class="m-2.5">
+<header class="bg-black w-full mb-1 flex flex-row place-items-center justify-between">
+    <div class="flex flex-col justify-center m-2.5">
         <h1 class="text-4xl sm:text-6xl text-slate-200 font-code">Matthew K Wilson{'>'}<span class="animate-pulse">_</span></h1>
         <div class="w-full flex flex-col">
             <h2 class="text-xl sm:text-2xl text-slate-400 font-code mx-1">A software developer with a passion for games and graphics.</h2>
             <h2 class="text-xl sm:text-2xl text-slate-600 font-code mx-1">Welcome to my portfolio!</h2>
         </div>
     </div>
+    <Image src={profile} alt="" class="hidden lg:block max-h-32 h-fit w-auto m-4 rounded-xl"/>
 </header>
