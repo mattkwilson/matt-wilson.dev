@@ -1,5 +1,3 @@
-import * as lil from 'lil-gui';
-
 // ----------------------------------------------------------
 // Created by Matthew Wilson
 // Created for UBC CPSC 314, September 2022, Assignment 1 
@@ -102,6 +100,7 @@ function generateChunk(x,z) {
     var geometry = new THREE.BufferGeometry();
     var mesh = new THREE.Mesh(geometry, blockMaterial);
     mesh.position.set(x, 0, z); 
+    // mesh.frustumCulled = false;
     buildChunkMesh(mesh);
     return mesh;
   }

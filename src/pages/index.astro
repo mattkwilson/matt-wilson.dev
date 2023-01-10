@@ -40,6 +40,7 @@ import wytchwoodImages from '../assets/definitions/wytchwood-images.js';
 import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 import wytchwoodTrailer from '../assets/images/wytchwood/wytchwood-showcase.webm';
 import wytchwoodTrailerThumbnail from '../assets/images/wytchwood/wytchwood-header.jpg';
+
 ---
 <script>
 	addEventListener("load", (event) => {
@@ -70,7 +71,7 @@ import wytchwoodTrailerThumbnail from '../assets/images/wytchwood/wytchwood-head
 		stack="GLSL OpenGL Shadertoy" thumbnail={rayTracingIcon} link="Shadertoy:https://www.shadertoy.com/view/clXGzf">
 			<!-- <Shadertoy slot="left" id="clXGzf"/> -->
 			<Three id="ray-tracing" slot="left">
-				<script type='module' src="/src/js/ray-tracing.js"></script>
+				<script type='module' src="./js/ray-tracing.js"></script>
 			</Three>
 			<RayTracingProjectInfo slot="right"/>
 		</Project>
@@ -79,8 +80,9 @@ import wytchwoodTrailerThumbnail from '../assets/images/wytchwood/wytchwood-head
 		startDate="Oct 2022" endDate="Jan 2023" 
 		stack="HTML JavaScript Three.js" thumbnail={proceduralTerrainIcon} github="https://github.com/mattkwilson/procedural-voxels-threejs">
 			<Three id="procedural-voxels" slot="left">
+				<script src="https://cdn.jsdelivr.net/npm/lil-gui@0.17.0/dist/lil-gui.umd.min.js"></script>
 				<script type="text/javascript" src="https://unpkg.com/perlin-noise-3d"></script> 
-				<script type='module' src="/src/js/procedural-voxels.js"></script>
+				<script type='module' src='./js/procedural-voxels.js'></script>
 			</Three>
 			<ProceduralTerrainProjectInfo slot="right"/>
 		</Project>
@@ -97,7 +99,7 @@ import wytchwoodTrailerThumbnail from '../assets/images/wytchwood/wytchwood-head
 		<Project name="Terrain Engine 2D" type="Unity Extension Asset" 
 			description="A 2D procedural terrain generation tool for Unity." 
 			startDate="Oct 2017" endDate="Dec 2020" 
-			stack="C# Unity HLSL" thumbnail={te2dIcon} download="Demo:src/assets/te2d-demo.zip" link="Documentation:src/assets/te2d-documentation.pdf">
+			stack="C# Unity HLSL" thumbnail={te2dIcon} download="Demo:./te2d/te2d-demo.zip" link="Documentation:./te2d/te2d-documentation.pdf">
 			<MediaPlayer slot="left">
 				<Video src={te2dUpdateVideo} thumbnail={te2dUpdateThumbnail}></Video>
 				<Video src={te2dReleaseVideo} thumbnail={te2dReleaseThumbnail}></Video>
