@@ -16,10 +16,18 @@ import { Icon } from 'astro-icon';
 import bhopGoIcon from '../assets/images/bhop_go/icon.png';
 import bhopGoImages from '../assets/definitions/bhop-go-images.js';
 import { Content as BhopGoProjectInfo } from '../projects/bhop-go.md';
+import bhopGoTrailer from '../assets/images/bhop_go/bhop-blop-trailer.webm';
+import bhopGoTrailerThumbnail from '../assets/images/bhop_go/logo.png';
 
 import te2dIcon from '../assets/images/terrain_engine_2d/te2d-icon.png';
 import te2dImages from '../assets/definitions/terrain-engine-2d-images.js';
 import { Content as Te2dProjectInfo } from '../projects/terrain-engine-2d.md';
+import te2dUpdateVideo from '../assets/images/terrain_engine_2d/te2d-update.webm';
+import te2dReleaseVideo from '../assets/images/terrain_engine_2d/te2d-release.webm';
+import te2dFullFeatureVideo from '../assets/images/terrain_engine_2d/te2d-full-feature.webm';
+import te2dUpdateThumbnail from '../assets/images/terrain_engine_2d/te2d-update-thumbnail.png';
+import te2dReleaseThumbnail from '../assets/images/terrain_engine_2d/te2d-release-thumbnail.png';
+import te2dFullFeatureThumbnail from '../assets/images/terrain_engine_2d/te2d-full-feature-thumbnail.png';
 
 import rayTracingIcon from '../assets/images/ray_tracing_spheres/ray-tracing-icon.png';
 import { Content as RayTracingProjectInfo } from '../projects/ray-tracing-spheres.md';
@@ -30,6 +38,8 @@ import { Content as ProceduralTerrainProjectInfo } from '../projects/procedural-
 import wytchwoodIcon from '../assets/images/wytchwood/wytchwood-icon.png';
 import wytchwoodImages from '../assets/definitions/wytchwood-images.js';
 import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
+import wytchwoodTrailer from '../assets/images/wytchwood/wytchwood-showcase.webm';
+import wytchwoodTrailerThumbnail from '../assets/images/wytchwood/wytchwood-header.jpg';
 ---
 <script>
 	addEventListener("load", (event) => {
@@ -59,15 +69,18 @@ import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 		startDate="Nov 2022" endDate="Dec 2022" 
 		stack="GLSL OpenGL Shadertoy" thumbnail={rayTracingIcon} link="Shadertoy:https://www.shadertoy.com/view/clXGzf">
 			<!-- <Shadertoy slot="left" id="clXGzf"/> -->
-			<Three id="ray-tracing" src="/src/js/ray-tracing.js" slot="left"/>
+			<Three id="ray-tracing" slot="left">
+				<script type='module' src="/src/js/ray-tracing.js"></script>
+			</Three>
 			<RayTracingProjectInfo slot="right"/>
 		</Project>
 		<Project name="Procedural Terrain" type="Web App" 
 		description="Infinite procedurally generated terrain." 
 		startDate="Oct 2022" endDate="Jan 2023" 
 		stack="HTML JavaScript Three.js" thumbnail={proceduralTerrainIcon} github="https://github.com/mattkwilson/procedural-voxels-threejs">
-			<Three id="procedural-voxels" src="/src/js/procedural-voxels.js" slot="left">
+			<Three id="procedural-voxels" slot="left">
 				<script type="text/javascript" src="https://unpkg.com/perlin-noise-3d"></script> 
+				<script type='module' src="/src/js/procedural-voxels.js"></script>
 			</Three>
 			<ProceduralTerrainProjectInfo slot="right"/>
 		</Project>
@@ -76,7 +89,7 @@ import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 		startDate="Jan 2019" endDate="Jul 2020" 
 		stack="C# Unity Xbox Playstation Nintendo" thumbnail={wytchwoodIcon} steam="https://store.steampowered.com/app/729000/Wytchwood/" link="Alientrap:https://www.alientrap.com/games/wytchwood/">
 		<MediaPlayer slot="left">
-			<Video src="src/assets/images/wytchwood/wytchwood-showcase.webm" thumbnail="src/assets/images/wytchwood/wytchwood-header.jpg"></Video>
+			<Video src={wytchwoodTrailer} thumbnail={wytchwoodTrailerThumbnail}></Video>
 			<ImageMedia images={wytchwoodImages}></ImageMedia>
 		</MediaPlayer>
 		<WytchwoodProjectInfo slot="right"/>
@@ -86,9 +99,9 @@ import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 			startDate="Oct 2017" endDate="Dec 2020" 
 			stack="C# Unity HLSL" thumbnail={te2dIcon} download="Demo:src/assets/te2d-demo.zip" link="Documentation:src/assets/te2d-documentation.pdf">
 			<MediaPlayer slot="left">
-				<Video src="src/assets/images/terrain_engine_2d/te2d-update.webm" thumbnail="src/assets/images/terrain_engine_2d/te2d-update-thumbnail.png"></Video>
-				<Video src="src/assets/images/terrain_engine_2d/te2d-release.webm" thumbnail="src/assets/images/terrain_engine_2d/te2d-release-thumbnail.png"></Video>
-				<Video src="src/assets/images/terrain_engine_2d/te2d-full-feature.webm" thumbnail="src/assets/images/terrain_engine_2d/te2d-full-feature-thumbnail.png"></Video>
+				<Video src={te2dUpdateVideo} thumbnail={te2dUpdateThumbnail}></Video>
+				<Video src={te2dReleaseVideo} thumbnail={te2dReleaseThumbnail}></Video>
+				<Video src={te2dFullFeatureVideo} thumbnail={te2dFullFeatureThumbnail}></Video>
 				<ImageMedia images={te2dImages}></ImageMedia>
 			</MediaPlayer>
 			<Te2dProjectInfo slot="right"/>
@@ -98,7 +111,7 @@ import { Content as WytchwoodProjectInfo } from '../projects/wytchwood.md';
 		startDate="Jan 2017" endDate="Jun 2017" 
 		stack="Java Android libGDX" thumbnail={bhopGoIcon}>
 			<MediaPlayer slot="left">
-				<Video src="src/assets/images/bhop_go/bhop-blop-trailer.webm" thumbnail="src/assets/images/bhop_go/logo.png"></Video>
+				<Video src={bhopGoTrailer} thumbnail={bhopGoTrailerThumbnail}></Video>
 				<ImageMedia images={bhopGoImages}></ImageMedia>
 			</MediaPlayer>
 			<BhopGoProjectInfo slot="right"/>
