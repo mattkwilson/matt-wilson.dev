@@ -10,16 +10,25 @@ export interface Props {
     endDate: string;
     stack: string;
     thumbnail: string|ImageMetadata;
-    github: string;
+    github?: string;
+    steam?: string;
+    link?: string; // format: 'name:src'
+    download?: string; // format: 'name:src'
 }
 
-const { name, type, description, startDate, endDate, stack, thumbnail, github } = Astro.props;
+const { name, type, description, startDate, endDate, stack, thumbnail, github, steam, link, download } = Astro.props;
 const date = startDate + ' - ' + endDate;
+
+const linkName = link !== undefined ? link.substring(0,link.indexOf(':')) : "";
+const linkSRC = link !== undefined ? link.substring(link.indexOf(':') + 1, link.length) : "";
+
+const downloadName = download !== undefined ? download.substring(0,download.indexOf(':')) : "";
+const downloadSRC = download !== undefined ? download.substring(download.indexOf(':') + 1, download.length) : "";
 ---
 
-<div class="flex flex-col mx-2 my-1 drop-shadow-2xl">
+<div class="flex flex-col px-2 my-1 drop-shadow-2xl w-full max-w-screen-2xl">
     <div project-div class="w-full h-full bg-black rounded-t-xl sm:rounded-t-none rounded-b-xl sm:rounded-b-none hover:bg-slate-800">
-        <div class="flex flex-row m-2 my-3">
+        <div class="flex flex-row mx-1 sm:mx-2 my-3">
             <div class="flex m-auto mx-2">
                 <Picture class="flex mx-auto my-auto rounded-md" src={thumbnail} alt="Project Image" sizes="120px" widths={[120]} aspectRatio={'1:1'}></Picture>
             </div>
@@ -34,8 +43,8 @@ const date = startDate + ' - ' + endDate;
                 <div class="hidden my-1 sm:block grow text-white">
                     <h2>{description}</h2>
                 </div>
-                <div id="stack" class="flex flex-row-reverse text-white">
-                    {stack.split(' ').reverse().map((s) => ( <h3 class="bg-white mx-2 rounded-md text-black font-bold px-1">{s}</h3> ))}
+                <div id="stack" class="flex flex-row-reverse">
+                    {stack.split(' ').reverse().map((s) => ( <h3 class="bg-white text-sm sm:text-base mx-1 sm:mx-2 rounded-md text-black font-bold px-1">{s}</h3> ))}
                 </div>
             </div>
         </div>
@@ -47,20 +56,30 @@ const date = startDate + ' - ' + endDate;
         <div class="w-full md:w-1/2">
             <div class="flex flex-col h-full w-full text-white">
                 <div class="flex flex-col h-full w-full md:overflow-y-scroll p-2">
-                    <article class="prose-ul:list-disc prose-ul:list-inside prose-a:text-red-700">
+                    <article class="prose-ul:ml-2 prose-ul:list-disc prose-ul:list-inside prose-a:text-red-700 prose-p:mt-1 prose-ul:mt-1">
                         <slot name="right"/>
                     </article>
                 </div>
-                {github != "" && <div class="m-2">
+                {(github !== undefined || steam !== undefined || link !== undefined || download !== undefined) && <div class="m-2">
                     <h1 class="font-bold">Check out the project:</h1>
-                    <div class="flex flex-row m-2 mx-auto">
+                    <div class="flex flex-row my-1 mx-auto">
                         <div class="grow"></div>
-                        <a class="w-12 mx-1" href={github} target="_blank">
-                            <Icon style="color:white" pack="mdi" name="github"/>
-                        </a>
-                        <a class="w-12 mx-1" href="" target="_blank">
-                            <Icon style="color:white" pack="ic" name="baseline-download-for-offline"/>
-                        </a>
+                        {link !== undefined && <a href={linkSRC} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
+                            <h1 class="mx-auto font-bold text-md">{linkName}</h1>
+                            <Icon class="w-12 mx-1" pack="mdi" name="link-variant"/>
+                        </a>}
+                        {github !== undefined && <a href={github} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
+                            <h1 class="mx-auto font-bold text-md">Github</h1>
+                            <Icon class="w-12 mx-1" pack="mdi" name="github"/>
+                        </a>}
+                        {steam !== undefined && <a href={steam} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
+                            <h1 class="mx-auto font-bold text-md">Steam</h1>
+                            <Icon class="w-12 mx-1" pack="mdi" name="steam"/>
+                        </a>}
+                        {download !== undefined && <a href={downloadSRC} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
+                            <h1 class="mx-auto font-bold text-md">{downloadName}</h1>
+                            <Icon class="w-12 mx-1" pack="ic" name="baseline-download-for-offline"/>
+                        </a>}
                     </div>
                 </div>}
             </div>
@@ -75,7 +94,6 @@ const date = startDate + ' - ' + endDate;
     });
 
     function handleProjectCardClick(event: Event) {
-        console.log('Handle Project Card Click: ' + event.currentTarget);
         const e = event.currentTarget as Element;
         const content = e.parentElement.lastElementChild;
         if(content.classList.contains('hidden')) {
@@ -93,6 +111,10 @@ const date = startDate + ' - ' + endDate;
                 const iframeElement = element as HTMLIFrameElement;
                 iframeElement.contentWindow.postMessage(JSON.stringify(message), '*');
             });   
+
+            e.parentElement.querySelectorAll('VIDEO').forEach((element: HTMLVideoElement) => {
+                element.pause();
+            });
         }
     }
 </script>
