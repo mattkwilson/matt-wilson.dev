@@ -268,7 +268,8 @@ viewportElement.addEventListener('click', (event) => {
     if (controls.isLocked) {
       controls.unlock();
     }
-    if (event.target.getAttribute('data-engine') == 'three.js r148' && !controls.isLocked) {
+    console.log(event);
+    if (!controls.isLocked) {
       controls.lock();
     } 
 });
