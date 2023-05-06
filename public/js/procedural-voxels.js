@@ -269,7 +269,8 @@ viewportElement.addEventListener('click', (event) => {
       controls.unlock();
     }
     console.log(event);
-    if (!controls.isLocked) {
+    if (!controls.isLocked && (event.target.id == 'procedural-voxels' || event.target.parentNode.id == 'procedural-voxels')) {
+      gui.close();
       controls.lock();
     } 
 });

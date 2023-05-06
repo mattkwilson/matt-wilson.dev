@@ -6,7 +6,7 @@ export interface Props {
 const { id } = Astro.props;
 ---
 
-<div id={id} class="mx-auto w-full h-96 relative">
+<div id={id} class="mx-auto w-full h-96 relative cursor-pointer">
     <script type="module" src="https://unpkg.com/three"></script>
     <script type="module" src="https://unpkg.com/three@0.146.0/examples/js/controls/PointerLockControls.js"></script>
     <slot/>
