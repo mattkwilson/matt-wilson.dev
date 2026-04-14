@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
 	name: string;
@@ -66,19 +66,19 @@ const downloadSRC = download !== undefined ? download.substring(download.indexOf
                         <div class="grow"></div>
                         {link !== undefined && <a href={linkSRC} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
                             <h1 class="mx-auto font-bold text-md">{linkName}</h1>
-                            <Icon class="w-12 mx-1" pack="mdi" name="link-variant"/>
+                            <Icon class="w-12 mx-1" name="mdi:link-variant"/>
                         </a>}
                         {github !== undefined && <a href={github} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
                             <h1 class="mx-auto font-bold text-md">Github</h1>
-                            <Icon class="w-12 mx-1" pack="mdi" name="github"/>
+                            <Icon class="w-12 mx-1" name="mdi:github"/>
                         </a>}
                         {steam !== undefined && <a href={steam} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
                             <h1 class="mx-auto font-bold text-md">Steam</h1>
-                            <Icon class="w-12 mx-1" pack="mdi" name="steam"/>
+                            <Icon class="w-12 mx-1" name="mdi:steam"/>
                         </a>}
                         {download !== undefined && <a href={downloadSRC} class="flex flex-row items-center justify-center text-white hover:text-slate-400">
                             <h1 class="mx-auto font-bold text-md">{downloadName}</h1>
-                            <Icon class="w-12 mx-1" pack="ic" name="baseline-download-for-offline"/>
+                            <Icon class="w-12 mx-1" name="ic:baseline-download-for-offline"/>
                         </a>}
                     </div>
                 </div>}
